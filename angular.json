@@ -3,7 +3,7 @@
   "version": 1,
   "newProjectRoot": "projects",
   "projects": {
-    "simba": {
+    "SIMBA_APP": {
       "projectType": "application",
       "schematics": {
         "@schematics/angular:component": {
@@ -15,11 +15,11 @@
       "prefix": "app",
       "architect": {
         "build": {
-          "builder": "@angular-devkit/build-angular:application",
+          "builder": "ngx-pug-builders:browser",
           "options": {
-            "outputPath": "dist/simba",
+            "outputPath": "dist/simba-app",
             "index": "src/index.html",
-            "browser": "src/main.ts",
+            "main": "src/main.ts",
             "polyfills": [
               "zone.js"
             ],
@@ -30,47 +30,116 @@
               "src/assets"
             ],
             "styles": [
-              "src/styles.scss"
+              "node_modules/primeng/resources/primeng.min.css",
+              "node_modules/primeicons/primeicons.css",
+              {
+                "input": "src/styles.scss",
+                "inject": true,
+                "bundleName": "styles"
+              }
             ],
-            "scripts": [],
-            "server": "src/main.server.ts",
-            "prerender": true,
-            "ssr": {
-              "entry": "server.ts"
-            }
+            "scripts": [
+              "node_modules/jquery/dist/jquery.min.js"
+            ],
+            "allowedCommonJsDependencies": [
+              "aws-sdk/clients/s3",
+              "lodash",
+              "html2canvas",
+              "file-saver"
+           ]
           },
           "configurations": {
             "production": {
+              "fileReplacements": [{
+                "replace": "src/environments/environment.ts",
+                "with": "src/environments/environment.prod.ts"
+              }],
               "budgets": [
                 {
                   "type": "initial",
-                  "maximumWarning": "500kb",
-                  "maximumError": "1mb"
+                  "maximumWarning": "3mb",
+                  "maximumError": "5mb"
                 },
                 {
                   "type": "anyComponentStyle",
-                  "maximumWarning": "2kb",
-                  "maximumError": "4kb"
+                  "maximumWarning": "3mb",
+                  "maximumError": "5mb"
                 }
               ],
               "outputHashing": "all"
             },
             "development": {
+              "buildOptimizer": false,
               "optimization": false,
+              "vendorChunk": true,
               "extractLicenses": false,
-              "sourceMap": true
+              "sourceMap": true,
+              "namedChunks": true
+            },
+            "uat": {
+              "fileReplacements": [{
+                  "replace": "src/environments/environment.ts",
+                  "with": "src/environments/environment.uat.ts"
+              }],
+              "optimization": true,
+              "outputHashing": "all",
+              "sourceMap": true,
+              "budgets": [
+                {
+                  "type": "initial",
+                  "maximumWarning": "3mb",
+                  "maximumError": "5mb"
+                },
+                {
+                  "type": "anyComponentStyle",
+                  "maximumWarning": "3mb",
+                  "maximumError": "5mb"
+                }
+              ]
+            },
+            "preprod": {
+              "fileReplacements": [{
+                  "replace": "src/environments/environment.ts",
+                  "with": "src/environments/environment.preprod.ts"
+              }],
+              "optimization": true,
+              "outputHashing": "none",
+              "sourceMap": false,
+              "extractCss": true,
+              "namedChunks": true,
+              "extractLicenses": true,
+              "vendorChunk": true,
+              "buildOptimizer": true,
+              "budgets": [
+                {
+                  "type": "initial",
+                  "maximumWarning": "3mb",
+                  "maximumError": "5mb"
+                },
+                {
+                  "type": "anyComponentStyle",
+                  "maximumWarning": "3mb",
+                  "maximumError": "5mb"
+                }
+              ]
             }
           },
-          "defaultConfiguration": "production"
+          "defaultConfiguration": "uat"
         },
         "serve": {
           "builder": "ngx-pug-builders:dev-server",
           "configurations": {
             "production": {
-              "buildTarget": "simba:build:production"
+              "buildTarget": "SIMBA_APP:build:production"
             },
             "development": {
-              "buildTarget": "simba:build:development"
+              "buildTarget": "SIMBA_APP:build:development"
+            },
+            "uat": {
+              "buildTarget": "SIMBA_APP:build:uat"
+            },
+            "preprod":  {
+              "buildTarget": "SIMBA_APP:build:preprod"
             }
           },
           "defaultConfiguration": "development"
@@ -78,7 +147,7 @@
         "extract-i18n": {
           "builder": "ngx-pug-builders:extract-i18n",
           "options": {
-            "buildTarget": "simba:build"
+            "buildTarget": "SIMBA_APP:build"
           }
         },
         "test": {
