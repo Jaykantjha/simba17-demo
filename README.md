@@ -25,3 +25,7 @@ Run `ng e2e` to execute the end-to-end tests via a platform of your choice. To u
 ## Further help
 
 To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI Overview and Command Reference](https://angular.io/cli) page.
+
+
+## For NGRX reference 
+https://stackblitz.com/edit/github-ngrx-crud-yaurkj?file=src%2Fapp%2Fgames%2Fgame-create%2Fgame-create.component.ts,src%2Fapp%2Fgames%2Fstore%2Fgames.reducers.ts,src%2Fapp%2Fgames%2Fgame-edit%2Fgame-edit.component.ts%3AL53,src%2Fapp%2Fgames%2Fstore%2Fgames.effects.ts,src%2Fapp%2Fgames%2Fstore%2Fgames.actions.ts,src%2Fapp%2Fgames%2Fgame-list%2Fgame-list.component.ts,src%2Fapp%2Fgames%2Fgames.module.ts
