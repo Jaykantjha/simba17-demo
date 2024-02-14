@@ -1,0 +1,25 @@
+<app-header />
+<app-navbar title="Get Started" />
+<div class="container-fluid bg-gradient-to-b from-pink-50 to-cyan-50 layout-container">
+    <div class="row-auto grid-rows-1 grid grid-flow-col gap-4 mx-2  items-center">
+        <div class="col-6 d-md-block d-none mx-auto">
+            <div class="left-container">
+                <div class="flex py-3 items-center justify-center	">
+                    <app-svg name="arogyaplustitle" class="me-3 h-full flex items-center" />
+                    <h1 class="text-base">Arogya Supreme Health Insurance</h1>
+                </div>
+                <app-svg name="family" class="d-flex justify-center mt-5" />
+            </div>
+        </div>
+        <div class="col-10">
+            <div class="card card-body rounded-3">
+                <router-outlet></router-outlet>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="text-center">
+    <img src="assets/images/png/healthbottom.png" />
+    <p class="text-xs	">SBIGI does not accept Cash for Premium Payments against the Policy.</p>
+    <p class="text-xs	">© 2022 SBI General Insurance Company Limited | All Rights Reserved </p>
+</div>

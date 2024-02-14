@@ -6,11 +6,13 @@ import { provideClientHydration } from '@angular/platform-browser';
 import { provideHttpClient, withInterceptors } from '@angular/common/http';
 import { authInterceptor } from './shared/authInterceptor.service';
 import { decryptResponseInterceptor } from './shared/decrypt-response.interceptor';
+import { BrowserAnimationsModule, provideAnimations } from '@angular/platform-browser/animations';
 
 export const appConfig: ApplicationConfig = {
   providers: [
     provideRouter(routes),
     provideClientHydration(),
     provideHttpClient(withInterceptors([authInterceptor, decryptResponseInterceptor])),
+    provideAnimations()
   ]
 }; 

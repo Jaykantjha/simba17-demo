@@ -5,7 +5,7 @@ import { DomSanitizer } from '@angular/platform-browser';
 @Component({
   selector: 'app-svg',
   standalone: true,
-  template: `<span class="inline-block" [innerHTML]="svgIcon"></span>`,
+  template: `<span [innerHTML]="svgIcon"></span>`,
   styleUrls: [],
 })
 export class SvgComponent implements OnChanges {

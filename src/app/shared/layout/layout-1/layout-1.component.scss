@@ -1,0 +1,10 @@
+.left-container {
+    background: linear-gradient(270deg,hsla(0,0%,100%,.3),rgba(238,249,254,.3) 100%);
+    box-shadow: 0 0 2rem rgba(150,221,255,.25);
+    border-radius: 0 0 30rem 30rem;
+    // width: 40rem;
+    height: 45vh;
+}
+.layout-container {
+    min-height: calc(100vh - 270px);
+}

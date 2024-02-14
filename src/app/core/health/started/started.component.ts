@@ -1,20 +1,19 @@
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
+import { DropdownModule } from 'primeng/dropdown';
 import { Router } from '@angular/router';
 import { FLAG, STATIC_DATA } from './constant';
 import { Urls } from '../../../shared/enums/url.enum';
 import * as uuid from 'uuid';
 import { UtilityService } from '../../../shared/utility-service.service';
 import { CommonService } from '../../../shared/common.service';
-import { CommonModule } from '@angular/common';
-import { SvgComponent } from '../../../shared/svg/svg.component';
-import { HeaderComponent } from '../../../shared/header/header.component';
-import { NavbarComponent } from '../../../shared/navbar/navbar.component';
+import { CommonModule, NgFor, NgIf } from '@angular/common';
+import { NoopAnimationsModule } from '@angular/platform-browser/animations';
 
 @Component({
   selector: 'app-started',
   standalone: true,
-  imports: [CommonModule, SvgComponent, HeaderComponent, NavbarComponent],
+  imports: [CommonModule, DropdownModule, ReactiveFormsModule],
   templateUrl: './started.component.pug',
   styleUrl: './started.component.scss'
 })
@@ -205,10 +204,11 @@ export class StartedComponent implements OnInit {
     const decryptedDIPRecord = this.utilityService.sessionData('DIPdata');
     const DIPData = decryptedDIPRecord ? JSON.parse(decryptedDIPRecord) : {};
     const request = { ID, Flag, UserType: DIPData.dipUserType };
-  
-    this.commonService.getDetailByUrl(Urls.Agents, JSON.stringify(request))
+    const encryptedRequest = this.utilityService.encryptData(JSON.stringify(request));
+    this.commonService.getDetailByUrl(Urls.Agents, encryptedRequest)
       .subscribe(
         ({ data }: {data: any}) => {
+          console.log(data, 'data-->');
           this.isLoading.pop();
           
           if (!data) {

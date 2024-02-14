@@ -1,8 +1,10 @@
-.row-auto.grid.bg-indigo-900.p-3.text-white.text-2xl.px-5
-    .col-12 
-        i.pi.pi-arrow-left((click)="goBack()") 
-        span.ms-3 {{title}}
-    .col-12
-        .progress-bar-area(*ngIf="maxActive != 0")
-            ul
-                li(*ngFor="let list of [0,1,2,3]; let i = index", [class.active]="maxActive > i")
+.bg-indigo-900.text-white.text-2xl.px-md-4.py-md-1
+    .container-fluid
+        .row
+            .d-flex.align-content-center 
+                i.pi.pi-arrow-left.text-base((click)="goBack()") 
+                span.ms-3.text-base {{title}}
+            .col-12
+                .progress-bar-area(*ngIf="maxActive != 0")
+                    ul
+                        li(*ngFor="let list of [0,1,2,3]; let i = index", [class.active]="maxActive > i")

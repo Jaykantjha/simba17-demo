@@ -12,6 +12,6 @@ export class CommonService {
 
   getDetailByUrl(url: string, request: any): Observable<any> {
     const payload = { requestText:  request}
-    return this.http.post<any>(url, payload);
+    return this.http.post<any>(`${environment.voUrl}${url}`, payload);
   }
 }

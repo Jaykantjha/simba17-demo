@@ -1,76 +1,8 @@
-app-header
-app-navbar(title="Get Started")
-//- app-loader(*ngIf="isLoading.length > 0")
+form.ticketForm([formGroup]="startedForm", (ngSubmit)="onFormSubmit()")
+    .p-field.mb-2
+        span.p-float-label.customDD.mb-0
+            p-dropdown.dropDown(inputId='Agent', (onChange)="onChange($event, 'agentName', false)", [autoDisplayFirst]='false', [options]="agentList",[filter]="true", filterBy="agentName", optionLabel='agentName',formControlName="agentName")
+            label Select Agent
 
-.row-auto
-    .col-auto 
-        app-svg([name]="pageData?.logo", width="200")
-        //- img([src]="pageData?.logo")
-        span {{pageData?.title}}
-    .col-auto 
-        app-svg([name]="pageData?.heroImg")
-        //- img([src]="pageData?.heroImg")
-//- .container-fluid.newstarted
-//-     .getstartedcontainer
-//-         .p-flex.d-flex
-//-             h1.mt-4.text-3xl
-//-                 img([src]="pageData?.logo")
-//-                 | {{pageData?.title}}
-//-             img([src]="pageData?.heroImg")
-
-        //- .getstartedForm
-        //-     h2 Enter branch details
-        //-     form.ticketForm([formGroup]="startedForm", (ngSubmit)="onFormSubmit()")
-        //-         .p-field.mb-2
-        //-             span.p-float-label.customDD.mb-0
-        //-                 p-dropdown.dropDown(inputId='Agent', (onChange)="onChange($event, 'agentName', false)", [autoDisplayFirst]='false', [options]="agentList",[filter]="true", filterBy="agentName", [disabled]="canBeDisableField('agent')", optionLabel='agentName',formControlName="agentName")
-        //-                 label Select Agent
-        //-             //- app-validation-message([control]="startedForm.get('agentName')")
-        //-             //-     div(*ngIf="startedForm.get('agentName').hasError('required')") Please Select Agent Name
-
-        //-         .p-field.mb-2
-        //-             span.p-float-label.customDD.mb-0
-        //-                 p-dropdown.dropDown(inputId='agreementCode', (onChange)="onChange($event, 'agreementCode', false)", [autoDisplayFirst]='false', [filter]="true", filterBy="agreementName", [disabled]="canBeDisableField('agreementCode')", [options]="agreementCodeList", optionLabel='agreementName',formControlName="agreementCode")
-        //-                 label Select Agreement Code
-        //-             //- app-validation-message([control]="startedForm.get('agreementCode')")
-        //-             //-     div(*ngIf="startedForm.get('agreementCode').hasError('required')") Please Select Agreement Code 
-
-        //-         .p-field.mb-2
-        //-             span.p-float-label.customDD.mb-0
-        //-                 p-dropdown.dropDown(inputId='branchList', [autoDisplayFirst]='false', [filter]="true", filterBy="branchName", [disabled]="canBeDisableField('branch')", [options]="branchList", optionLabel='branchName',formControlName="branchName")
-        //-                 label Select SBIG Branch
-        //-             app-validation-message([control]="startedForm.get('branchName')")
-        //-                 div(*ngIf="startedForm.get('branchName').hasError('required')") Please Select SBIG Branch 
-
-        //-         ng-container(*ngIf="pageData?.pincodeRequired")
-        //-             .p-field.mb-2
-        //-                 span.p-float-label.customDD.mb-0
-        //-                     input#Pincode.inputtext(type='text',autocomplete="off", formControlName="pinCode", pInputText, maxlength="6",(input)="handlePinCodeChange($event)", appNumbersOnly)
-        //-                     label(for='Pincode') Pincode of Proposer
-        //-                 //- app-validation-message([control]="startedForm.get('pinCode')")
-        //-                 //-     div(*ngIf="startedForm.get('pinCode').hasError('required')") Please Enter Pincode of Proposer
-        //-                 //-     div(*ngIf="startedForm.get('pinCode').hasError('minlength')") Pincode Must Be 6 Character Long
-        //-                 //-     div(*ngIf="startedForm.get('pinCode').hasError('maxlength')") Pincode Must Be 6 Character Long
-        //-                 p.fieldError(*ngIf ="(zoneBlocked) && startedForm.get('pinCode').valid") This Pincode is blocked for you
-        //-                 p.fieldError(*ngIf ="zoneErr") Unable to find Zone Code for entered pincode
-        //-                 p(*ngIf="startedForm?.value?.zoneName") Zone {{startedForm?.value?.zoneName}}
-
-        //-         ng-container(*ngIf="isNewCustomer")
-        //-             h2.mb-2 Select the customer category
-        //-             .customCardparent([ngClass]="{'nonpointer':!isNewCustomer}")
-        //-                 .customCard( (click)="setCustomerCategory(1)", [ngClass]="{'selected showtick':startedForm.value.customerCategory==1}") 
-        //-                     h4
-        //-                         i.titleicon.icon-ncustomer
-        //-                         |  New customer
-        //-                     p  If your customer does not have any existing policy with SBI GI or any other insurance provider.
-        //-                 //- app-validation-message([control]="startedForm.get('customerCategory')")
-        //-                 //-     div(*ngIf="startedForm.get('customerCategory').hasError('required')") Please Select Customer Category
-
-        //-         .arogyabtnwrap.text-center
-        //-             button.btnPrimary.btnbold.mBottom([disabled]="(startedForm.invalid || zoneErr || zoneBlocked)", type='submit', label='Proceed') Proceed
-
-//- p-dialog([(visible)]='isDialogVisible', [modal]='true', [baseZIndex]='10000', [draggable]='false', [resizable]='false', [showHeader]='false', [closable]='true', styleClass='endorseerror boxShadow', maskStyleClass='Endorsementmask')
-//-     a.closedialog.icon-close((click)="isDialogVisible = false;")
-//-     .alertSign
-//-         span.icon-close
-//-     .errormsg.h2title {{dialogMessage}}
+    .arogyabtnwrap.text-center
+        button.btnPrimary.btnbold.mBottom(type='submit', label='Proceed') Proceed
