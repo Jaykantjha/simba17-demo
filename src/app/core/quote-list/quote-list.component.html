@@ -1,0 +1,36 @@
+<div class="card-body">
+    <!-- <div class="navbar-nav">
+          <a class="nav-item nav-link" routerLinkActive="active" routerLink="/createpost">Create Post</a>
+      </div> -->
+      <div class="table-responsive">
+        <div id="dataTable_wrappe1" class="dataTables_wrapper dt-bootstrap4">        
+          <div class="row">
+            <div class="col-sm-12">
+              <table class="table table-bordered dataTable" id="dataTable1" width="100%" cellspacing="0" role="grid" aria-describedby="dataTable_info"
+                style="width: 100%;">
+                <thead>
+                  <tr role="row">
+                    <th class="sorting_asc" tabindex="0" aria-controls="dataTable" rowspan="1" colspan="1" aria-sort="ascending" aria-label="Name: activate to sort column descending"
+                      style="width: 157px;">ID</th>
+                    <th class="sorting" tabindex="0" aria-controls="dataTable" rowspan="1" colspan="1" aria-label="Position: activate to sort column ascending"
+                      style="width: 267px;"> UserID</th>
+                    <th class="sorting" tabindex="0" aria-controls="dataTable" rowspan="1" colspan="1" aria-label="Office: activate to sort column ascending"
+                      style="width: 113px;">Title</th>
+                    <th class="sorting" tabindex="0" aria-controls="dataTable" rowspan="1" colspan="1" aria-label="Age: activate to sort column ascending"
+                      style="width: 51px;">Body</th>
+                    
+                </thead>
+                <tbody>
+                  <tr role="row" class="odd" *ngFor="let r of postList">
+                    <td class="sorting_1">{{r.id}}</td>
+                    <td>{{r.userid}}</td>
+                    <td>{{r.title}}</td>
+                    <td>{{r.body}}</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>       
+        </div>
+      </div>
+    </div>

@@ -1,11 +1,16 @@
 import { Routes } from '@angular/router';
 import { VORedirectionLoginComponent } from './core/voredirection-login/voredirection-login.component';
 import { Layout1Component } from './shared/layout/layout-1/layout-1.component';
+import { QuoteListComponent } from './core/quote-list/quote-list.component';
 
 export const routes: Routes = [
     {
         path: 'registration/VORedirectionLogin',
         component: VORedirectionLoginComponent,
+    },
+    {
+        path: 'my-quote',
+        component: QuoteListComponent
     },
     {
         path: 'health',
